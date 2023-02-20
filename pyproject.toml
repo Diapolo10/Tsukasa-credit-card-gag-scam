@@ -45,26 +45,20 @@ documentation = 'https://github.com/Diapolo10/iplib3/tree/main/docs'
 
 
 [tool.poetry.dependencies]
-python = "^3.6"
-Pillow = "^8.3.1"
+python = '^3.7'
+Pillow = '^8.4.0'
 
 
 [tool.poetry.dev-dependencies]
-coverage = {version = "*", extras = ["toml",]}
-flake8 = "*"
-pylint = "*"
-pyproject-flake8 = "*" # Wrapper to use pyproject.toml as config file
-pytest = "*"
-pytest-cov = "*"
+flake8 = '^5.0.4'
+pylint = '^2.13.9'
+pyproject-flake8 = '^5.0.4'
 
 
 [tool.pylint.'MESSAGES CONTROL']
 max-line-length = 120
 disable = [  # TODO: Improve code so that these can be dropped
-    'R0911', # Too many return statements
-    'R0912', # Too many branches
-    'W0642', # Invalid assignment to self or cls in instance or class method, respectively.
-    'R0801', # Similar lines in 2 files
+    'R0913', # Too many arguments
 ]
 
 
