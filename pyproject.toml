@@ -45,14 +45,14 @@ documentation = 'https://github.com/Diapolo10/iplib3/tree/main/docs'
 
 
 [tool.poetry.dependencies]
-python = '^3.7'
+python = '^3.8.1'
 Pillow = '^8.4.0'
 
 
 [tool.poetry.dev-dependencies]
-flake8 = '^5.0.4'
-pylint = '^2.13.9'
-pyproject-flake8 = '^5.0.4'
+flake8 = '^6.0.0'
+flake8-pyproject = '^1.2.2'
+pylint = '^2.16.2'
 
 
 [tool.pylint.'MESSAGES CONTROL']
