@@ -52,7 +52,7 @@ Pillow = '^9.4.0'
 [tool.poetry.dev-dependencies]
 flake8 = '^6.0.0'
 flake8-pyproject = '^1.2.2'
-pylint = '^2.17.0'
+pylint = '^2.17.1'
 
 
 [tool.pylint.'MESSAGES CONTROL']
