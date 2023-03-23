@@ -12,7 +12,7 @@ FRAME_DELAY = 140  # in ms, roughly equivalent to ~7 FPS
 
 
 def resource_path(relative_path: Union[str, Path]) -> Path:
-    """ Get absolute path to resource, works for dev and for PyInstaller """
+    """Get absolute path to resource, works for dev and for PyInstaller"""
 
     base_dir = Path(__file__).parent
 

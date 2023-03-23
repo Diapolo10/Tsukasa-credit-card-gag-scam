@@ -5,15 +5,15 @@
 # the repo. Unless a later match takes precedence,
 # @global-owner1 and @global-owner2 will be requested for
 # review when someone opens a pull request.
-*               @Bleeplo
-.gitignore      @Diapolo10
-docs/*          @Diapolo10
-.github/*       @Diapolo10
-poetry.lock     @Diapolo10
-pyproject.toml  @Diapolo10
-README.md       @Diapolo10
-src/__init__.py @Diapolo10
-src/__main__.py @Diapolo10
+*                     @Bleeplo
+.gitignore            @Diapolo10
+docs/*                @Diapolo10
+.github/*             @Diapolo10
+poetry.lock           @Diapolo10
+pyproject.toml        @Diapolo10
+README.md             @Diapolo10
+src/tccgs/__init__.py @Diapolo10
+src/tccgs/__main__.py @Diapolo10
 
 # Order is important; the last matching pattern takes the most
 # precedence. When someone opens a pull request that only

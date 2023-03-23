@@ -1,6 +1,6 @@
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ['poetry-core>=1.0.0', 'wheel',]
+build-backend = 'poetry.core.masonry.api'
 
 
 [tool.coverage.run]
@@ -14,7 +14,7 @@ omit = [
 [tool.flake8]
 max-line-length = 120
 extend-ignore = 'E203,'
-max-complexity = 15 # Info: https://en.wikipedia.org/wiki/Cyclomatic_complexity
+max-complexity = 5 # Info: https://en.wikipedia.org/wiki/Cyclomatic_complexity
 per-file-ignores = """\
 # F401: Ignore "unused" imports
 # F403: Ignore star imports
@@ -24,9 +24,13 @@ __init__.py:F401,F403,F405\
 
 
 [tool.poetry]
-name = "tsukasa-credit-card-gag-scam"
-version = "1.0.0"
+name = 'tsukasa-credit-card-gag-scam'
+version = '1.0.1'
 description = "A joke program based on a popular credit card scam meme"
+
+packages = [
+    { include = 'tccgs', from = 'src' }
+]
 
 authors = ["Bleeplo <bleeplo@users.noreply.github.com>",]
 maintainers = ["Lari Liuhamo <lari.liuhamo+github@gmail.com>",]
@@ -52,7 +56,9 @@ Pillow = '^9.4.0'
 [tool.poetry.dev-dependencies]
 flake8 = '^6.0.0'
 flake8-pyproject = '^1.2.3'
+mypy = '^1.1.1'
 pylint = '^2.17.1'
+types-pillow = '^9.4.0.17'
 
 
 [tool.pylint.'MESSAGES CONTROL']

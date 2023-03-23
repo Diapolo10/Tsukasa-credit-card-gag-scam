@@ -1,6 +1,6 @@
 # This workflow automatically creates a GitHub release for the project on successful version update
 
-name: Create a GitHub release
+name: Create a GitHub Release
 
 on:
   push:
@@ -13,17 +13,17 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
+        os: [ ubuntu-latest, windows-latest ]
         python-version: [
           '3.10',
-          'pypy-3.8',
+          'pypy-3.9',
         ]
     steps:
 
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
@@ -31,22 +31,33 @@ jobs:
       - name: Install Poetry
         uses: Gr1N/setup-poetry@v8
 
-      - name: Install library and dependencies
+      - name: Install Library and Dependencies
         run: |
           poetry run pip install --upgrade pip setuptools
           poetry install
 
-      - name: Build releases
+      - name: Build Python Releases
         run: |
           poetry build
 
-      - name: Upload builds
+      - name: Build Executables
+        uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script_name: script.py
+          onefile: true
+          standalone: true
+          enable-plugins: tk-inter
+
+      - name: Upload Builds
         uses: actions/upload-artifact@v3
         with:
           name: built-binary
           path: |
             dist/*.whl
             dist/*.tar.gz
+            build/*.exe
+            build/*.bin
 
   release:
     name: Create Release
@@ -54,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v3
 
       - name: Download Artifacts
@@ -68,7 +79,7 @@ jobs:
         with:
           prefix: 'v'
 
-      - name: Check for Pre-release
+      - name: Check for Pre-Release
         uses: haya14busa/action-cond@v1
         id: is_prerelease
         with:
@@ -94,3 +105,5 @@ jobs:
           files: |
             *.whl
             *.tar.gz
+            *.exe
+            *.bin
