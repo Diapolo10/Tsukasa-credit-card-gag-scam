@@ -44,7 +44,7 @@ jobs:
         if: ${{ !startsWith(matrix.python-version, 'pypy') }}
         run: |
           poetry run pip install nuitka
-          poetry run nuitka \
+          poetry run python -m nuitka \
            --standalone \
            --onefile \
            --show-scons \
