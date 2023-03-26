@@ -41,13 +41,19 @@ jobs:
           poetry build
 
       - name: Build Executables
-        uses: Nuitka/Nuitka-Action@main
-        with:
-          nuitka-version: main
-          script-name: src/tccgs/script.py
-          onefile: true
-          standalone: true
-          enable-plugins: tk-inter
+        if: ${{ !startsWith(matrix.python-version, 'pypy') }}
+        run:
+          poetry run pip install nuitka
+          nuitka \
+           --standalone \
+           --onefile \
+           --show-scons \
+           --assume-yes-for-downloads \
+           --output-dir=build \
+           --enable-plugin=tk-inter \
+           --disable-console \
+           --include-data-dir=src/tccgs/data=data \
+           src/tccgs/script.py
 
       - name: Upload Builds
         uses: actions/upload-artifact@v3
