@@ -43,8 +43,8 @@ jobs:
         run: |
           poetry build
 
-      - name: Build Executables
-        if: ${{ !startsWith(matrix.python-version, 'pypy') }}
+      - name: Build Executables (Posix)
+        if: ${{ !startsWith(matrix.python-version, 'pypy') && !startsWith(matrix.os, 'windows') }}
         run: |
           poetry run pip install nuitka
           poetry run python -m nuitka \
@@ -56,6 +56,21 @@ jobs:
            --enable-plugin=tk-inter \
            --disable-console \
            --include-data-dir=src/tccgs/data=data \
+           src/tccgs/script.py
+
+      - name: Build Executables (Windows)
+        if: ${{ !startsWith(matrix.python-version, 'pypy') && startsWith(matrix.os, 'windows') }}
+        run: |
+          poetry run pip install nuitka
+          poetry run python -m nuitka `
+           --standalone `
+           --onefile `
+           --show-scons `
+           --assume-yes-for-downloads `
+           --output-dir=build `
+           --enable-plugin=tk-inter `
+           --disable-console `
+           --include-data-dir=src/tccgs/data=data `
            src/tccgs/script.py
 
       - name: Upload Builds
