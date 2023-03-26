@@ -42,7 +42,7 @@ jobs:
 
       - name: Build Executables
         if: ${{ !startsWith(matrix.python-version, 'pypy') }}
-        run:
+        run: |
           poetry run pip install nuitka
           nuitka \
            --standalone \
