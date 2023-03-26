@@ -50,23 +50,37 @@ Lorem Ipsum dolor sit amet.
 <!--
 _______________________________________________________________________________
 
-## [0.1.1] - 2023-03-24
+## [0.1.2] - 2023-03-26
 
-This release adds automatic builds, improves the `README.md` file, updates
-dependencies, and does some additional cleanup.
-
-### Added
-
-- Releases are now built automatically
-- Bunch of metadata files, including this changelog
+This release fixes problems with Nuitka, and updates Poetry to use grouped
+dependencies.
 
 ### Changed
 
-- Added example GIF to `README.md`
-- Updated dependencies
+- Poetry now treats linters as a separate group
 - Updated localisation files
 
+### Fixed
+
+- Nuitka builds in GitHub Actions now work properly
+
 -->
+
+_______________________________________________________________________________
+
+## [0.1.2] - 2023-03-26
+
+This release fixes problems with Nuitka, and updates Poetry to use grouped
+dependencies.
+
+### Changed
+
+- Poetry now treats linters as a separate group
+- Updated localisation files
+
+### Fixed
+
+- Nuitka builds in GitHub Actions now work properly
 
 _______________________________________________________________________________
 

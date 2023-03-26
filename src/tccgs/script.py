@@ -5,7 +5,7 @@ import tkinter as tk
 from pathlib import Path
 from typing import Union
 
-from PIL import Image, ImageSequence, ImageTk
+from PIL import Image, ImageSequence, ImageTk  # type: ignore
 
 
 FRAME_DELAY = 140  # in ms, roughly equivalent to ~7 FPS
