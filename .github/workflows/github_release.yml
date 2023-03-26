@@ -137,7 +137,7 @@ jobs:
           prerelease: ${{ steps.is_prerelease.outputs.value }}
           body_path: ./TEMP_CHANGELOG.md
           files: |
-            *.whl
-            *.tar.gz
-            *.exe
-            *.bin
+            dist/*.whl
+            dist/*.tar.gz
+            build/*.exe
+            build/*.bin
