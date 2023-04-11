@@ -80,17 +80,17 @@ optional = true
 
 
 [tool.poetry.group.linters.dependencies]
-flake8 = '^6.0.0'
-flake8-pyproject = '^1.2.3'
-pylint = '^2.17.1'
+# flake8 = '^6.0.0'
+# flake8-pyproject = '^1.2.3'
+# pylint = '^2.17.1'
 ruff = '^0.0.261'
 
 
-[tool.pylint.'MESSAGES CONTROL']
-max-line-length = 120
-disable = [
-    'R0913', # Too many arguments
-]
+# [tool.pylint.'MESSAGES CONTROL']
+# max-line-length = 120
+# disable = [
+#     'R0913', # Too many arguments
+# ]
 
 
 [tool.pytest.ini_options]

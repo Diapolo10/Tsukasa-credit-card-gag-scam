@@ -28,15 +28,17 @@ jobs:
     - name: Lint with Ruff
       run: |
         poetry run ruff check --fix .
+        echo "RUFF_SUCCESS=$([ $? -eq 0 ])" >> $GITHUB_ENV
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v3
+      if: ${{ !env.RUFF_SUCCESS }}
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         title: "Format Python code with Ruff push"
-        commit-message: ":art: Format Python code with Ruff"
+        commit-message: "[PATCH] Ruff auto-format"
         body: |
-          There appear to be some python formatting errors in ${{ github.sha }}. This pull request
-          uses the Ruff formatter to fix these issues.
+          There appear to be some python formatting errors in ${{ github.sha }}.
+          This pull request uses the Ruff formatter to fix some of these issues.
         base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
         branch: actions/ruff
