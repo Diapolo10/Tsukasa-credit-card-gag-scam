@@ -73,7 +73,6 @@ Pillow = '^9.5.0'
 [tool.poetry.group.dev.dependencies]
 mypy = '^1.2.0'
 types-pillow = '^9.4.0.17'
-ruff = '^0.0.261'
 
 
 [tool.poetry.group.linters]
@@ -84,6 +83,7 @@ optional = true
 flake8 = '^6.0.0'
 flake8-pyproject = '^1.2.3'
 pylint = '^2.17.1'
+ruff = '^0.0.261'
 
 
 [tool.pylint.'MESSAGES CONTROL']
