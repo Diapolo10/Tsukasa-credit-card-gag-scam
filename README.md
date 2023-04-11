@@ -12,7 +12,7 @@ structure, and built-in releases.
 
 ## Special thanks
 
-* @Bleeplo, for creating the original program.
+* [@Bleeplo][], for creating the original program.
 
 <!-- Exe version here: https://drive.google.com/file/d/1gVKI089Y7Ub7MrqNmRwsvOGZYS3msnIu/view?usp=sharing
 If you're gonna be running the .py file, please have all the pictures in the same folder as script.py
@@ -22,3 +22,4 @@ This script took around 11 hours to make. Do not edit the script to have malicio
 Thank you, God bless -->
 
 [example-gif]: ./docs/assets/example.gif
+[@Bleeplo]: https://github.com/Bleeplo

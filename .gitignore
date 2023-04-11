@@ -142,3 +142,6 @@ cython_debug/
 
 # Snyk stuff
 .dccache
+
+# Ruff
+.ruff_cache

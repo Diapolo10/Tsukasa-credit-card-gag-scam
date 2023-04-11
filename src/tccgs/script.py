@@ -3,27 +3,25 @@
 import sys
 import tkinter as tk
 from pathlib import Path
-from typing import Union
 
-from PIL import Image, ImageSequence, ImageTk  # type: ignore
-
+from PIL import Image, ImageSequence, ImageTk  # type: ignore  # noqa: PGH003
 
 FRAME_DELAY = 140  # in ms, roughly equivalent to ~7 FPS
 
 
-def resource_path(relative_path: Union[str, Path]) -> Path:
+def resource_path(relative_path: str | Path) -> Path:
     """Get absolute path to resource, works for dev and for PyInstaller"""
 
     base_dir = Path(__file__).parent
 
     if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
         # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_dir = Path(sys._MEIPASS)  # type: ignore  # pylint: disable=no-member,protected-access
+        base_dir = Path(sys._MEIPASS)  # type: ignore  # pylint: disable=no-member,protected-access  # noqa: SLF001,PGH003
 
     return base_dir / relative_path
 
 
-def intro_text():
+def intro_text() -> None:
     """Shows the main text label"""
 
     intro = tk.Label(
@@ -32,7 +30,7 @@ def intro_text():
         fg="#000000",
         font=("Arial", 15),
         padx=0,
-        pady=0
+        pady=0,
     )
     intro.grid(row=0, rowspan=1, column=1, columnspan=3)
 
@@ -46,7 +44,7 @@ def text_w_entrybox(root: tk.Tk,
                     entry_row: int,
                     entry_rowspan: int,
                     entry_column: int,
-                    entry_columnspan: int):
+                    entry_columnspan: int) -> None:
     """Creates the entry box"""
 
     text_label = tk.Label(
@@ -60,7 +58,7 @@ def text_w_entrybox(root: tk.Tk,
         row=text_row,
         rowspan=text_rowspan,
         column=text_column,
-        columnspan=text_columnspan
+        columnspan=text_columnspan,
     )
 
     entry_box = tk.Entry(root, width=35)
@@ -69,14 +67,14 @@ def text_w_entrybox(root: tk.Tk,
         rowspan=entry_rowspan,
         column=entry_column,
         columnspan=entry_columnspan,
-        sticky=tk.W
+        sticky=tk.W,
     )
 
 
 class AnimatedGIF:
     """A wrapper for displaying GIF animations"""
 
-    def __init__(self, parent, file_path):
+    def __init__(self: 'AnimatedGIF', parent: tk.Tk, file_path: Path) -> None:
         """Initialises the GIF wrapper"""
 
         self.parent = parent
@@ -95,12 +93,12 @@ class AnimatedGIF:
         # Make the number of this 0.5 the size of the image
         self.image = self.canvas.create_image(139, 143, image=self.sequence[self.frame])
 
-    def increment_frame(self) -> None:
+    def increment_frame(self: 'AnimatedGIF') -> None:
         """Updates the current frame index"""
 
         self.frame = (self.frame + 1) % len(self.sequence)
 
-    def animate(self) -> None:
+    def animate(self: 'AnimatedGIF') -> None:
         """Handles the animation by re-rendering the current frame"""
 
         self.increment_frame()
@@ -108,7 +106,7 @@ class AnimatedGIF:
         self.canvas.itemconfig(self.image, image=self.sequence[self.frame])
 
 
-def main():
+def main() -> None:
     """Main loop"""
 
     # Resources
@@ -123,7 +121,7 @@ def main():
         image=thanksbutton_image,
         command=root.quit,
         bg="#FFFFFF",
-        borderwidth=0
+        borderwidth=0,
     )
 
     # Window Info
