@@ -27,5 +27,16 @@ jobs:
 
     - name: Lint with Ruff
       run: |
-        # Stop the build if there are Python syntax errors or undefined names
         poetry run ruff check --fix .
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        title: "Format Python code with Ruff push"
+        commit-message: ":art: Format Python code with Ruff"
+        body: |
+          There appear to be some python formatting errors in ${{ github.sha }}. This pull request
+          uses the Ruff formatter to fix these issues.
+        base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
+        branch: actions/ruff
