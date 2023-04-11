@@ -1,4 +1,4 @@
-# This workflow runs the Flake8 linter on git push
+# This workflow runs the Ruff linter
 
 name: Ruff
 
@@ -14,3 +14,5 @@ jobs:
 
     - name: Run Ruff
       uses: chartboost/ruff-action@v1
+      with:
+        args: "--fix"

@@ -143,6 +143,8 @@ def main() -> None:
     # Main loop
     root.mainloop()
 
+    # print("Here be dragons")
+
 
 if __name__ == '__main__':
     main()
