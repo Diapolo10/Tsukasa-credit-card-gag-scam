@@ -11,18 +11,6 @@ omit = [
 ]
 
 
-[tool.flake8]
-max-line-length = 120
-extend-ignore = 'E203,'
-max-complexity = 5 # Info: https://en.wikipedia.org/wiki/Cyclomatic_complexity
-per-file-ignores = """\
-# F401: Ignore "unused" imports
-# F403: Ignore star imports
-# F405: Ignore names from star imports
-__init__.py:F401,F403,F405\
-"""
-
-
 [tool.nuitka]  # NOTE: Does not work yet, waiting for support
 assume-yes-for-downloads = true
 disable-console = true
