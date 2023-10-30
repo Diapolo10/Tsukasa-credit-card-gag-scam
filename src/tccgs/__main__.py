@@ -1,4 +1,4 @@
-"""For running as a package"""
+"""For running as a package."""
 
 from tccgs.script import main
 

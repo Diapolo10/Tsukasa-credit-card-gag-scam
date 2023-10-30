@@ -33,13 +33,14 @@ version = '1.0.2'
 description = "A joke program based on a popular credit card scam meme"
 
 packages = [
-    { include = 'tccgs', from = 'src' }
+    { include = 'tccgs', from = 'src' },
+    { include = 'tccgs_data', from = 'src' },
 ]
 
 authors = ["Bleeplo <bleeplo@users.noreply.github.com>",]
 maintainers = ["Lari Liuhamo <lari.liuhamo+github@gmail.com>",]
 
-include = ['CHANGELOG.md', 'LICENSE',]
+include = ['CHANGELOG.md', 'LICENSE', 'py.typed',]
 license = 'MIT'
 readme = 'README.md'
 
@@ -55,12 +56,13 @@ documentation = 'https://github.com/Diapolo10/iplib3/tree/main/docs'
 
 [tool.poetry.dependencies]
 python = '^3.8.1'
-Pillow = '^9.5.0'
+Pillow = '^10.1.0'
 
 
 [tool.poetry.group.dev.dependencies]
-mypy = '^1.2.0'
-types-pillow = '^9.4.0.17'
+mypy = '^1.6.1'
+nuitka = '^1.8.4'
+types-pillow = '^10.1.0.0'
 
 
 [tool.poetry.group.linters]
@@ -68,7 +70,7 @@ optional = true
 
 
 [tool.poetry.group.linters.dependencies]
-ruff = '>=0.0.261,<0.0.273'
+ruff = '^0.1.3'
 
 
 [tool.pytest.ini_options]
@@ -88,60 +90,86 @@ testpaths = [
 
 [tool.ruff]
 select = [
-    'A',   # Builtins
-    'ANN', # Annotations
-    'ARG', # Unused arguments
-    'B',   # Bugbear
-    'BLE', # Blind except
-    'C4',  # Comprehensions
-    'C90', # mccabe
-    'COM', # Commas
-    'DTZ', # Datetimes
-    'ERA', # Commented-out code
-    'EXE', # Executable
-    'G',   # Logging format
-    'I',   # Isort
-    'ICN', # Import conventions
-    'INP', # Disallow PEP-420 (Implicit namespace packages)
-    'INT', # gettext
-    'ISC', # Implicit str concat
-    'N',   # PEP-8 Naming
-    'NPY', # Numpy
-    'PGH', # Pygrep hooks
-    'PIE', # Unnecessary code
-    'PL',  # Pylint
-    'PT',  # Pytest
-    'PTH', # Use Pathlib
-    'PYI', # Stub files
-    'RET', # Return
-    'RUF', # Ruff
-    'RSE', # Raise
-    'S',   # Bandit
-    'SIM', # Code simplification
-    'SLF', # Private member access
-    'T20', # Print
-    'TCH', # Type checking
-    'TID', # Tidy imports
-    'UP',  # Pyupgrade
-    'W',   # Warnings
-    'YTT', # sys.version
+    "A",    # Builtins
+    "ANN",  # Annotations
+    "ARG",  # Unused arguments
+    "B",    # Bugbear
+    "BLE",  # Blind except
+    "C4",   # Comprehensions
+    "C90",  # mccabe
+    "COM",  # Commas
+    "D1",   # Undocumented public elements
+    "D2",   # Docstring conventions
+    "D3",   # Triple double quotes
+    "D4",   # Docstring text format
+    "DTZ",  # Datetimes
+    "EM",   # Error messages
+    "ERA",  # Commented-out code
+    "EXE",  # Executable
+    "F",    # Pyflakes
+    "FA",   # __future__ annotations
+    "FLY",  # F-strings
+    # "FURB", # Refurb
+    "G",    # Logging format
+    "I",    # Isort
+    "ICN",  # Import conventions
+    "INP",  # Disallow PEP-420 (Implicit namespace packages)
+    "INT",  # gettext
+    "ISC",  # Implicit str concat
+    # "LOG",  # Logging
+    "N",    # PEP-8 Naming
+    "NPY",  # Numpy
+    "PERF", # Unnecessary performance costs
+    "PGH",  # Pygrep hooks
+    "PIE",  # Unnecessary code
+    "PL",   # Pylint
+    "PT",   # Pytest
+    "PTH",  # Use Pathlib
+    "PYI",  # Stub files
+    "Q",    # Quotes
+    "RET",  # Return
+    "RUF",  # Ruff
+    "RSE",  # Raise
+    "S",    # Bandit
+    "SIM",  # Code simplification
+    "SLF",  # Private member access
+    "SLOT", # __slots__
+    "T10",  # Debugger
+    "T20",  # Print
+    "TCH",  # Type checking
+    "TID",  # Tidy imports
+    "TRY",  # Exception handling
+    "UP",   # Pyupgrade
+    "W",    # Warnings
+    "YTT",  # sys.version
 ]
 ignore = [
-    'PLR0913',  # Too many arguments
+    "D203",    # One blank line before class docstring
+    "D212",    # Multi-line summary first line
+    "PLR0913", # Too many arguments
+    "Q000",    # Single quotes found but double quotes preferred
 ]
 ignore-init-module-imports = true
 line-length = 120
+# preview = true
+show-fixes = true
+src = ["src",]
+target-version = "py38"
+
+
+[tool.ruff.flake8-quotes]
+docstring-quotes = "double"
+multiline-quotes = "double"
 
 
 [tool.ruff.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
 
 
 [tool.ruff.per-file-ignores]
 # https://beta.ruff.rs/docs/rules/
-'__init__.py' = ['F401','F403','F405',]
-'tests/*' = ['ARG', 'S101',]
+"__init__.py" = ["F401", "F403", "F405",]
+"tests/*" = ["ANN", "ARG", "INP001", "S101",]
 
 
 [tool.ruff.pylint]
