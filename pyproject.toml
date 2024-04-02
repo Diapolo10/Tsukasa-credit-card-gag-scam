@@ -68,7 +68,7 @@ optional = true
 
 
 [tool.poetry.group.linters.dependencies]
-ruff = '>=0.0.261,<0.3.5'
+ruff = '>=0.0.261,<0.3.6'
 
 
 [tool.pytest.ini_options]
