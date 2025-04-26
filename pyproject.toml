@@ -4,7 +4,6 @@ build-backend = "hatchling.build"
 
 [tool.nuitka]  # NOTE: Does not work yet, waiting for support
 assume-yes-for-downloads = true
-disable-console = true
 enable-plugin = ["tk-inter",]
 include-data-dir = [
     { source = "src/tccgs/data", destination = "data" },
@@ -14,6 +13,7 @@ output-dir = "build"
 show-scons = true
 standalone = true
 windows-company-name = "Team DeltaV"
+windows-console-mode = "attach"
 windows-file-description = "A joke program based on a popular credit card scam meme"
 windows-product-name = "Totally Not Malware"
 
