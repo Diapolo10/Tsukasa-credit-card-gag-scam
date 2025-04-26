@@ -104,7 +104,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           pattern: built-binary-*
-          merge-multiples: true
+          merge-multiple: true
 
       - name: Check Version
         uses: nowsprinting/check-version-format-action@v3
