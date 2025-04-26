@@ -50,21 +50,35 @@ Lorem Ipsum dolor sit amet.
 <!--
 _______________________________________________________________________________
 
-## [0.1.2] - 2023-03-26
+## [1.1.0] - 2025-04-26
 
-This release fixes problems with Nuitka, and updates Poetry to use grouped
-dependencies.
+This release migrates the project from Poetry to uv, updates dependencies,
+reformats parts of the codebase, and updates the README instructions.
 
 ### Changed
 
-- Poetry now treats linters as a separate group
+- Switched all Poetry parts to uv equivalents
+- Updated dependencies
+- Reformatted some parts of the program source code
+- Updated the README to have better usage instructions
 - Updated localisation files
 
-### Fixed
-
-- Nuitka builds in GitHub Actions now work properly
-
 -->
+
+_______________________________________________________________________________
+
+## [1.1.0] - 2025-04-26
+
+This release migrates the project from Poetry to uv, updates dependencies,
+reformats parts of the codebase, and updates the README instructions.
+
+### Changed
+
+- Switched all Poetry parts to uv equivalents
+- Updated dependencies
+- Reformatted some parts of the program source code
+- Updated the README to have better usage instructions
+- Updated localisation files
 
 _______________________________________________________________________________
 
