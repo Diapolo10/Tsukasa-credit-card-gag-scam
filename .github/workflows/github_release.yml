@@ -60,7 +60,6 @@ jobs:
            --assume-yes-for-downloads \
            --output-dir=build \
            --enable-plugin=tk-inter \
-           --disable-console \
            --include-data-dir=src/tccgs/data=data \
            src/tccgs/script.py
 
@@ -74,9 +73,9 @@ jobs:
            --assume-yes-for-downloads `
            --output-dir=build `
            --enable-plugin=tk-inter `
-           --disable-console `
            --include-data-dir=src/tccgs/data=data `
            --windows-company-name="Team DeltaV" `
+           --windows-console-mode=attach `
            --windows-file-description="A joke program based on a popular credit card scam meme" `
            --windows-file-version="${{ steps.version.outputs.major_without_prefix }}.${{ steps.version.outputs.minor }}.${{ steps.version.outputs.patch }}" `
            --windows-product-name="Totally Not Malware" `
