@@ -32,6 +32,9 @@ maintainers = [
 license = "MIT"
 readme = "README.md"
 
+[project.scripts]
+tccgs = "tccgs.script:main"
+
 [project.urls]
 "Original source code" = "https://github.com/Bleeplo/Tsukasa-credit-card-gag-scam"
 "Original Windows executable" = "https://drive.google.com/file/d/1gVKI089Y7Ub7MrqNmRwsvOGZYS3msnIu/view?usp=sharing"
