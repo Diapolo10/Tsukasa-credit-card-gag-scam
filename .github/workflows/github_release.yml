@@ -53,7 +53,7 @@ jobs:
       - name: Build Executables (Posix)
         if: ${{ !startsWith(matrix.python-version, 'pypy') && !startsWith(matrix.os, 'windows') }}
         run: |
-          uvx --from nuitka nuitka \
+          uv run nuitka \
            --standalone \
            --onefile \
            --show-scons \
@@ -66,7 +66,7 @@ jobs:
       - name: Build Executables (Windows)
         if: ${{ !startsWith(matrix.python-version, 'pypy') && startsWith(matrix.os, 'windows') }}
         run: |
-          uvx --from nuitka nuitka.cmd `
+          uv run nuitka.cmd `
            --standalone `
            --onefile `
            --show-scons `
@@ -107,7 +107,7 @@ jobs:
           merge-multiple: true
 
       - name: Check Version
-        uses: nowsprinting/check-version-format-action@v3
+        uses: nowsprinting/check-version-format-action@v4
         id: version
         with:
           prefix: 'v'

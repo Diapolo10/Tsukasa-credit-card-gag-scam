@@ -50,16 +50,45 @@ Lorem Ipsum dolor sit amet.
 <!--
 _______________________________________________________________________________
 
-## [1.1.2] - 2025-04-26
+## [1.2.0] - 2025-04-26
 
-This bugfix release fixes a typo in the CI build configuration, causing
-artifacts to be missing in releases.
+This release adds rudimentary logging support, and fixes the executable build
+system. Previously, Nuitka did not include third-party dependencies.
+
+### Added
+
+- The program now logs messages to console, if you choose to view them
+
+### Changed
+
+- Updated the README to include build commands
+- Updated localisation files
 
 ### Fixed
 
-- Typo in actions/download-artifact `merge-multiple`-option
+- Executables now actually include the project dependencies again
 
 -->
+
+_______________________________________________________________________________
+
+## [1.2.0] - 2025-04-26
+
+This release adds rudimentary logging support, and fixes the executable build
+system. Previously, Nuitka did not include third-party dependencies.
+
+### Added
+
+- The program now logs messages to console, if you choose to view them
+
+### Changed
+
+- Updated the README to include build commands
+- Updated localisation files
+
+### Fixed
+
+- Executables now actually include the project dependencies again
 
 _______________________________________________________________________________
 

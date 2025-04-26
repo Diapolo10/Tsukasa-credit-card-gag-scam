@@ -55,6 +55,20 @@ uv run ruff check . --fix
 uv run ruff format
 ```
 
+### Building executables
+
+You can build an executable for non-Windows platforms using
+
+```sh
+uv run nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --enable-plugin=tk-inter --include-data-dir=src/tccgs/data=data src/tccgs/script.py
+```
+
+and for Windows with
+
+```sh
+uv run nuitka.cmd --standalone --onefile --assume-yes-for-downloads --output-dir=build --enable-plugin=tk-inter --include-data-dir=src/tccgs/data=data --windows-console-mode=attach src/tccgs/script.py
+```
+
 ## Version history
 
 The project's changelog can be found [here][changelog].

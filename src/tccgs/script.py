@@ -1,10 +1,16 @@
 """Display a fake credit card scam joke window."""
 
+import logging
 import sys
 import tkinter as tk
+from functools import partial
 from pathlib import Path
 
 from PIL import Image, ImageSequence, ImageTk
+
+from tccgs.logger import ROOT_LOGGER_NAME, setup_logging
+
+logger = logging.getLogger(ROOT_LOGGER_NAME)
 
 FRAME_DELAY = 140  # in ms, roughly equivalent to ~7 FPS
 
@@ -74,10 +80,16 @@ def text_w_entrybox(
     )
 
 
+def entry_button(root: tk.Tk) -> None:
+    """Handle "submitting" the entries."""
+    logger.warning("Th-thank you!")
+    root.quit()
+
+
 class AnimatedGIF:
     """A wrapper for displaying GIF animations."""
 
-    def __init__(self: "AnimatedGIF", parent: tk.Tk, file_path: Path) -> None:
+    def __init__(self, parent: tk.Tk, file_path: Path) -> None:
         """Initialise the GIF wrapper."""
         self.parent = parent
 
@@ -95,11 +107,11 @@ class AnimatedGIF:
         # Make the number of this 0.5 the size of the image
         self.image = self.canvas.create_image(139, 143, image=self.sequence[self.frame])
 
-    def increment_frame(self: "AnimatedGIF") -> None:
+    def increment_frame(self) -> None:
         """Update the current frame index."""
         self.frame = (self.frame + 1) % len(self.sequence)
 
-    def animate(self: "AnimatedGIF") -> None:
+    def animate(self) -> None:
         """Handle the animation by re-rendering the current frame."""
         self.increment_frame()
         self.parent.after(FRAME_DELAY, self.animate)
@@ -108,6 +120,10 @@ class AnimatedGIF:
 
 def main() -> None:
     """Run the main program."""
+    setup_logging()
+
+    logger.info("Starting TCCGS...")
+
     # Resources
     root = tk.Tk()
     window_icon = resource_path(Path("data") / "icon_ico.ico")
@@ -118,7 +134,7 @@ def main() -> None:
     button_quit = tk.Button(
         root,
         image=thanksbutton_image,
-        command=root.quit,
+        command=partial(entry_button, root),
         bg="#FFFFFF",
         borderwidth=0,
     )

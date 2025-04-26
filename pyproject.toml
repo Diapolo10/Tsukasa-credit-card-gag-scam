@@ -19,10 +19,13 @@ windows-product-name = "Totally Not Malware"
 
 [project]
 name = "tsukasa-credit-card-gag-scam"
-version = "1.1.2"
+version = "1.2.0"
 description = "A joke program based on a popular credit card scam meme"
 requires-python = ">=3.11.0"
-dependencies = ["Pillow>=11.2.1",]
+dependencies = [
+    "Pillow>=11.2.1",
+    "python-dotenv>=1.1.0",
+]
 authors = [
     { name = "Bleeplo", email = "bleeplo@users.noreply.github.com" },
 ]
@@ -45,6 +48,7 @@ tccgs = "tccgs.script:main"
 [dependency-groups]
 dev = [
     "mypy>=1.15.0",
+    "nuitka>=2.6.9",
     "ruff>=0.11.7",
 ]
 
@@ -70,6 +74,7 @@ max-complexity = 10
 [tool.ruff.lint.per-file-ignores]
 # https://beta.ruff.rs/docs/rules/
 "__init__.py" = ["F401", "F403", "F405", "PGH003",]
+"logger.py" = ["N815",]
 
 [tool.ruff.lint.pylint]
 max-args = 15
