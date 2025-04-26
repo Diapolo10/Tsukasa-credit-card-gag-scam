@@ -1,29 +1,31 @@
-"""Displays a fake credit card scam joke window"""
+"""Display a fake credit card scam joke window."""
 
 import sys
 import tkinter as tk
 from pathlib import Path
 
-from PIL import Image, ImageSequence, ImageTk  # type: ignore  # noqa: PGH003
+from PIL import Image, ImageSequence, ImageTk
 
 FRAME_DELAY = 140  # in ms, roughly equivalent to ~7 FPS
 
 
 def resource_path(relative_path: str | Path) -> Path:
-    """Get absolute path to resource, works for dev and for PyInstaller"""
+    """
+    Get absolute path to resource.
 
+    Works for dev and for PyInstaller.
+    """
     base_dir = Path(__file__).parent
 
-    if getattr(sys, 'frozen', False) and hasattr(sys, '_MEIPASS'):
+    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
         # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_dir = Path(sys._MEIPASS)  # type: ignore  # pylint: disable=no-member,protected-access  # noqa: SLF001,PGH003
+        base_dir = Path(sys._MEIPASS)  # noqa: SLF001
 
     return base_dir / relative_path
 
 
 def intro_text() -> None:
-    """Shows the main text label"""
-
+    """Show the main text label."""
     intro = tk.Label(
         text="H-hi there...\nDo you th-think I could have your\ncredit card information, p-please?",
         bg="#FFFFFF",
@@ -35,18 +37,19 @@ def intro_text() -> None:
     intro.grid(row=0, rowspan=1, column=1, columnspan=3)
 
 
-def text_w_entrybox(root: tk.Tk,
-                    text_label_sentence: str,
-                    text_row: int,
-                    text_rowspan: int,
-                    text_column: int,
-                    text_columnspan: int,
-                    entry_row: int,
-                    entry_rowspan: int,
-                    entry_column: int,
-                    entry_columnspan: int) -> None:
-    """Creates the entry box"""
-
+def text_w_entrybox(
+    root: tk.Tk,
+    text_label_sentence: str,
+    text_row: int,
+    text_rowspan: int,
+    text_column: int,
+    text_columnspan: int,
+    entry_row: int,
+    entry_rowspan: int,
+    entry_column: int,
+    entry_columnspan: int,
+) -> None:
+    """Create the entry box."""
     text_label = tk.Label(
         root,
         text=text_label_sentence,
@@ -72,11 +75,10 @@ def text_w_entrybox(root: tk.Tk,
 
 
 class AnimatedGIF:
-    """A wrapper for displaying GIF animations"""
+    """A wrapper for displaying GIF animations."""
 
-    def __init__(self: 'AnimatedGIF', parent: tk.Tk, file_path: Path) -> None:
-        """Initialises the GIF wrapper"""
-
+    def __init__(self: "AnimatedGIF", parent: tk.Tk, file_path: Path) -> None:
+        """Initialise the GIF wrapper."""
         self.parent = parent
 
         # size of the image (500x286 is the original gif size)
@@ -93,27 +95,24 @@ class AnimatedGIF:
         # Make the number of this 0.5 the size of the image
         self.image = self.canvas.create_image(139, 143, image=self.sequence[self.frame])
 
-    def increment_frame(self: 'AnimatedGIF') -> None:
-        """Updates the current frame index"""
-
+    def increment_frame(self: "AnimatedGIF") -> None:
+        """Update the current frame index."""
         self.frame = (self.frame + 1) % len(self.sequence)
 
-    def animate(self: 'AnimatedGIF') -> None:
-        """Handles the animation by re-rendering the current frame"""
-
+    def animate(self: "AnimatedGIF") -> None:
+        """Handle the animation by re-rendering the current frame."""
         self.increment_frame()
         self.parent.after(FRAME_DELAY, self.animate)
         self.canvas.itemconfig(self.image, image=self.sequence[self.frame])
 
 
 def main() -> None:
-    """Main loop"""
-
+    """Run the main program."""
     # Resources
     root = tk.Tk()
-    window_icon = resource_path(Path('data') / 'icon_ico.ico')
-    tsukasa_gif_file = resource_path(Path('data') / 'tsukasa.gif')
-    thx_button = resource_path(Path('data') / 'thanks_button.png')
+    window_icon = resource_path(Path("data") / "icon_ico.ico")
+    tsukasa_gif_file = resource_path(Path("data") / "tsukasa.gif")
+    thx_button = resource_path(Path("data") / "thanks_button.png")
 
     thanksbutton_image = tk.PhotoImage(file=thx_button)
     button_quit = tk.Button(
@@ -125,11 +124,11 @@ def main() -> None:
     )
 
     # Window Info
-    root.geometry('')
+    root.geometry("")
     root.title("Totally Not Malware")
     root.iconbitmap(window_icon)
-    root.configure(background='#FFFFFF')
-    root.resizable(False, False)  # Disables window resizing
+    root.configure(background="#FFFFFF")
+    root.resizable(width=False, height=False)  # Disables window resizing
 
     # Main display stuff
     gif = AnimatedGIF(root, tsukasa_gif_file)
@@ -144,5 +143,5 @@ def main() -> None:
     root.mainloop()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

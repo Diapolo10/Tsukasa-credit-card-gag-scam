@@ -1,155 +1,78 @@
 [build-system]
-requires = ['poetry-core>=1.2.0', 'wheel', 'nuitka',]
-build-backend = 'poetry.core.masonry.api'
-
-
-[tool.coverage.run]
-branch = true
-relative_files = true
-omit = [
-    # 'tests/*',
-]
-
+requires = ["hatchling", "nuitka",]
+build-backend = "hatchling.build"
 
 [tool.nuitka]  # NOTE: Does not work yet, waiting for support
 assume-yes-for-downloads = true
 disable-console = true
-enable-plugin = ['tk-inter',]
+enable-plugin = ["tk-inter",]
 include-data-dir = [
-    { source = 'src/tccgs/data', destination = 'data' },
+    { source = "src/tccgs/data", destination = "data" },
 ]
 onefile = true
-output-dir = 'build'
+output-dir = "build"
 show-scons = true
 standalone = true
 windows-company-name = "Team DeltaV"
 windows-file-description = "A joke program based on a popular credit card scam meme"
 windows-product-name = "Totally Not Malware"
 
-
-[tool.poetry]
-name = 'tsukasa-credit-card-gag-scam'
-version = '1.0.2'
+[project]
+name = "tsukasa-credit-card-gag-scam"
+version = "1.1.0"
 description = "A joke program based on a popular credit card scam meme"
+requires-python = ">=3.11.0"
+dependencies = ["Pillow>=11.2.1",]
+authors = [
+    { name = "Bleeplo", email = "bleeplo@users.noreply.github.com" },
+]
+maintainers = [
+    { name = "Lari Liuhamo", email = "lari.liuhamo+github@gmail.com" },
+]
+license = "MIT"
+readme = "README.md"
 
-packages = [
-    { include = 'tccgs', from = 'src' }
+[project.urls]
+"Original source code" = "https://github.com/Bleeplo/Tsukasa-credit-card-gag-scam"
+"Original Windows executable" = "https://drive.google.com/file/d/1gVKI089Y7Ub7MrqNmRwsvOGZYS3msnIu/view?usp=sharing"
+"Updated source code" = "https://github.com/Diapolo10/Tsukasa-credit-card-gag-scam"
+"Updated executables" = "https://github.com/Diapolo10/Tsukasa-credit-card-gag-scam/releases"
+"Documentation" = "https://github.com/Diapolo10/iplib3/tree/main/docs"
+
+[dependency-groups]
+dev = [
+    "mypy>=1.15.0",
+    "ruff>=0.11.7",
 ]
 
-authors = ["Bleeplo <bleeplo@users.noreply.github.com>",]
-maintainers = ["Lari Liuhamo <lari.liuhamo+github@gmail.com>",]
-
-include = ['CHANGELOG.md', 'LICENSE',]
-license = 'MIT'
-readme = 'README.md'
-
-homepage = 'https://github.com/Bleeplo/Tsukasa-credit-card-gag-scam'
-repository = 'https://github.com/Diapolo10/iplib3'
-documentation = 'https://github.com/Diapolo10/iplib3/tree/main/docs'
-
-
-[tool.poetry.urls]
-"Original Windows executable" = 'https://drive.google.com/file/d/1gVKI089Y7Ub7MrqNmRwsvOGZYS3msnIu/view?usp=sharing'
-"Updated executables" = 'https://github.com/Diapolo10/Tsukasa-credit-card-gag-scam/releases'
-
-
-[tool.poetry.dependencies]
-python = '^3.8.1'
-Pillow = '>=9.5,<11.0'
-
-
-[tool.poetry.group.dev.dependencies]
-mypy = '^1.2.0'
-types-pillow = '>=9.4.0.17,<11.0.0.0'
-
-
-[tool.poetry.group.linters]
-optional = true
-
-
-[tool.poetry.group.linters.dependencies]
-ruff = '>=0.5.1,<0.11.8'
-
-
-[tool.pytest.ini_options]
-minversion = "6.0"
-addopts = """
---doctest-modules \
---cov=./ \
---cov-append \
---cov-report html:tests/reports/coverage-html \
---cov-report xml:tests/reports/coverage.xml \
---ignore=docs/
-"""
-testpaths = [
-    'tests',
-]
-
+[tool.hatch.build.targets.wheel]
+packages = ["src/tccgs"]
 
 [tool.ruff]
-select = [
-    'A',   # Builtins
-    'ANN', # Annotations
-    'ARG', # Unused arguments
-    'B',   # Bugbear
-    'BLE', # Blind except
-    'C4',  # Comprehensions
-    'C90', # mccabe
-    'COM', # Commas
-    'DTZ', # Datetimes
-    'ERA', # Commented-out code
-    'EXE', # Executable
-    'G',   # Logging format
-    'I',   # Isort
-    'ICN', # Import conventions
-    'INP', # Disallow PEP-420 (Implicit namespace packages)
-    'INT', # gettext
-    'ISC', # Implicit str concat
-    'N',   # PEP-8 Naming
-    'NPY', # Numpy
-    'PGH', # Pygrep hooks
-    'PIE', # Unnecessary code
-    'PL',  # Pylint
-    'PT',  # Pytest
-    'PTH', # Use Pathlib
-    'PYI', # Stub files
-    'RET', # Return
-    'RUF', # Ruff
-    'RSE', # Raise
-    'S',   # Bandit
-    'SIM', # Code simplification
-    'SLF', # Private member access
-    'T20', # Print
-    'TCH', # Type checking
-    'TID', # Tidy imports
-    'UP',  # Pyupgrade
-    'W',   # Warnings
-    'YTT', # sys.version
+lint.select = ["ALL"]
+lint.ignore = [
+    "COM812",  # Missing trailing comma (disabled due to formatter conflict)
+    "D203",    # One blank line before class docstring
+    "D212",    # Multi-line summary first line
+    "ISC001",  # Single-line implicit string concatenation (disabled due to formatter conflict)
+    "PLR0913", # Too many arguments
 ]
-ignore = [
-    'PLR0913',  # Too many arguments
-]
-ignore-init-module-imports = true
 line-length = 120
+show-fixes = true
+src = ["src",]
 
-
-[tool.ruff.mccabe]
-# Unlike Flake8, default to a complexity level of 10.
+[tool.ruff.lint.mccabe]
 max-complexity = 10
 
-
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 # https://beta.ruff.rs/docs/rules/
-'__init__.py' = ['F401','F403','F405',]
-'tests/*' = ['ARG', 'S101',]
+"__init__.py" = ["F401", "F403", "F405", "PGH003",]
 
-
-[tool.ruff.pylint]
+[tool.ruff.lint.pylint]
 max-args = 15
 max-branches = 20
 max-returns = 10
 max-statements = 80
 
-
-[tool.ruff.flake8-tidy-imports]
+[tool.ruff.lint.flake8-tidy-imports]
 ban-relative-imports = "all"
