@@ -50,22 +50,27 @@ Lorem Ipsum dolor sit amet.
 <!--
 _______________________________________________________________________________
 
-## [1.1.1] - 2025-04-26
+## [1.1.2] - 2025-04-26
 
-This bugfix release fixes a deprecation warning from Nuitka, and adds the
-ability to optionally read logs from the program if launched via a terminal.
-
-### Added
-
-- If you launch the program via a terminal, you can now read logs from it.
-  Previously, no logs were available at all
+This bugfix release fixes a typo in the CI build configuration, causing
+artifacts to be missing in releases.
 
 ### Fixed
 
-- Nuitka no longer warns about the `--disable-console` command-line option
-  being deprecated; it's been switched to the newer `--windows-console-mode`
+- Typo in actions/download-artifact `merge-multiple`-option
 
 -->
+
+_______________________________________________________________________________
+
+## [1.1.2] - 2025-04-26
+
+This bugfix release fixes a typo in the CI build configuration, causing
+artifacts to be missing in releases.
+
+### Fixed
+
+- Typo in actions/download-artifact `merge-multiple`-option
 
 _______________________________________________________________________________
 
