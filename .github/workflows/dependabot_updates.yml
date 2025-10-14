@@ -1,7 +1,7 @@
 # This workflow enables Dependabot to automatically merge dependency updates
 
 name: Dependabot reviewer
-on: [ push, pull_request ]
+on: [ pull_request ]
 
 permissions:
   contents: write
@@ -15,10 +15,10 @@ jobs:
 
       - name: Dependabot metadata
         id: dependabot-metadata
-        uses: dependabot/fetch-metadata@v1.7.0
+        uses: dependabot/fetch-metadata@v2.4.0
 
       - name: Enable auto-merge for Dependabot PRs
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr merge --auto --rebase "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

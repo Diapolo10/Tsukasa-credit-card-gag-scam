@@ -2,7 +2,18 @@
 
 name: Ruff
 
-on: [ push, pull_request ]
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
 
 jobs:
   ruff:
@@ -10,29 +21,27 @@ jobs:
     steps:
 
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v4
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
       with:
-        python-version: '3.10'
-
-    - name: Install Poetry
-      uses: Gr1N/setup-poetry@v8
+        cache-dependency-glob: "uv.lock"
+        enable-cache: true
 
     - name: Install library and dependencies
       run: |
-        poetry run pip install --upgrade pip setuptools
-        poetry install --only linters
+        uv sync --frozen
 
     - name: Lint with Ruff
+      id: lint
       run: |
-        poetry run ruff check --fix .
-        echo "RUFF_SUCCESS=$([ $? -eq 0 ])" >> $GITHUB_ENV
+        uv run ruff check --fix .
+        echo "RUFF_SUCCESS=$([ $? -eq 0 ])" >> $GITHUB_OUTPUT
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v5
-      if: ${{ !env.RUFF_SUCCESS }}
+      uses: peter-evans/create-pull-request@v7
+      if: ${{ !steps.lint.outputs.RUFF_SUCCESS }}
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         title: "Format Python code with Ruff push"
