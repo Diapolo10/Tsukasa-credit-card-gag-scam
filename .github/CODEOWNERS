@@ -9,11 +9,11 @@
 .gitignore            @Diapolo10
 docs/*                @Diapolo10
 .github/*             @Diapolo10
-poetry.lock           @Diapolo10
 pyproject.toml        @Diapolo10
 README.md             @Diapolo10
 src/tccgs/__init__.py @Diapolo10
 src/tccgs/__main__.py @Diapolo10
+uv.lock               @Diapolo10
 
 # Order is important; the last matching pattern takes the most
 # precedence. When someone opens a pull request that only

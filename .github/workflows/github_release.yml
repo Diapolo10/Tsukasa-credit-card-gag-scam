@@ -7,6 +7,10 @@ on:
     tags:
       - 'v*'
 
+permissions:
+  contents: write
+  discussions: write
+
 jobs:
   build:
     name: Build Binaries for ${{ matrix.os }}-${{ matrix.python-version }}
@@ -15,16 +19,21 @@ jobs:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
         python-version: [
-          '3.10',
-          'pypy-3.9',
+          '3.11',
+          'pypy-3.11',
         ]
         exclude:
           - os: windows-latest
-            python-version: 'pypy-3.9'
+            python-version: 'pypy-3.11'
     steps:
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Check Version
         uses: nowsprinting/check-version-format-action@v3
@@ -33,51 +42,40 @@ jobs:
           prefix: 'v'
 
       - name: Setup Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Install Poetry
-        uses: Gr1N/setup-poetry@v8
-
-      - name: Install Library and Dependencies
-        run: |
-          poetry run pip install --upgrade pip setuptools
-          poetry install
-
       - name: Build Python Releases
         run: |
-          poetry build
+          uv build
 
       - name: Build Executables (Posix)
         if: ${{ !startsWith(matrix.python-version, 'pypy') && !startsWith(matrix.os, 'windows') }}
         run: |
-          poetry run pip install nuitka
-          poetry run python -m nuitka \
+          uv run nuitka \
            --standalone \
            --onefile \
            --show-scons \
            --assume-yes-for-downloads \
            --output-dir=build \
            --enable-plugin=tk-inter \
-           --disable-console \
            --include-data-dir=src/tccgs/data=data \
            src/tccgs/script.py
 
       - name: Build Executables (Windows)
         if: ${{ !startsWith(matrix.python-version, 'pypy') && startsWith(matrix.os, 'windows') }}
         run: |
-          poetry run pip install nuitka
-          poetry run python -m nuitka `
+          uv run nuitka.cmd `
            --standalone `
            --onefile `
            --show-scons `
            --assume-yes-for-downloads `
            --output-dir=build `
            --enable-plugin=tk-inter `
-           --disable-console `
            --include-data-dir=src/tccgs/data=data `
            --windows-company-name="Team DeltaV" `
+           --windows-console-mode=attach `
            --windows-file-description="A joke program based on a popular credit card scam meme" `
            --windows-file-version="${{ steps.version.outputs.major_without_prefix }}.${{ steps.version.outputs.minor }}.${{ steps.version.outputs.patch }}" `
            --windows-product-name="Totally Not Malware" `
@@ -86,7 +84,7 @@ jobs:
       - name: Upload Builds
         uses: actions/upload-artifact@v4
         with:
-          name: built-binary
+          name: built-binary-${{ matrix.os }}-${{ matrix.python-version }}
           path: |
             dist/*.whl
             dist/*.tar.gz
@@ -100,15 +98,16 @@ jobs:
     steps:
 
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Download Artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
-          name: built-binary
+          pattern: built-binary-*
+          merge-multiple: true
 
       - name: Check Version
-        uses: nowsprinting/check-version-format-action@v3
+        uses: nowsprinting/check-version-format-action@v4
         id: version
         with:
           prefix: 'v'
@@ -127,17 +126,19 @@ jobs:
 
       - name: Create Release
         id: create_release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          name: Release ${{ github.ref_name }}
-          draft: false
-          prerelease: ${{ steps.is_prerelease.outputs.value }}
           body_path: ./TEMP_CHANGELOG.md
+          discussion_category_name: announcements
+          draft: false
           files: |
             dist/*.whl
             dist/*.tar.gz
             build/*.exe
             build/*.bin
+          name: Release ${{ github.ref_name }}
+          prerelease: ${{ steps.is_prerelease.outputs.value }}
+          preserve_order: true
+          tag_name: ${{ github.ref }}

@@ -16,8 +16,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@master
 
+    - name: Install uv
+      uses: astral-sh/setup-uv@v6
+
+    - name: Build
+      run: uv build
+
     - name: Publish distribution 📦 to PyPI
-      uses: JRubics/poetry-publish@v1.17
-      with:
-        ignore_dev_requirements: 'yes'
-        pypi_token: ${{ secrets.PYPI_PASSWORD }}
+      run: uv publish --token ${{ secrets.PYPI_PASSWORD }}

@@ -28,7 +28,7 @@ the following should be enough for 95% of all contributors:
 2. A text editor / Python IDE
 3. An installation of Python that supports Python version 3.10 or higher
 4. The following, non-standard PyPI modules (available through `pip`):
-    - `poetry`
+    - `uv`
 
 [Issues]: https://github.com/Diapolo10/growlery/issues
 [Projects]: https://github.com/Diapolo10/growlery/projects

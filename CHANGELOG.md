@@ -50,21 +50,88 @@ Lorem Ipsum dolor sit amet.
 <!--
 _______________________________________________________________________________
 
-## [0.1.2] - 2023-03-26
+## [1.2.0] - 2025-04-26
 
-This release fixes problems with Nuitka, and updates Poetry to use grouped
-dependencies.
+This release adds rudimentary logging support, and fixes the executable build
+system. Previously, Nuitka did not include third-party dependencies.
+
+### Added
+
+- The program now logs messages to console, if you choose to view them
 
 ### Changed
 
-- Poetry now treats linters as a separate group
+- Updated the README to include build commands
 - Updated localisation files
 
 ### Fixed
 
-- Nuitka builds in GitHub Actions now work properly
+- Executables now actually include the project dependencies again
 
 -->
+
+_______________________________________________________________________________
+
+## [1.2.0] - 2025-04-26
+
+This release adds rudimentary logging support, and fixes the executable build
+system. Previously, Nuitka did not include third-party dependencies.
+
+### Added
+
+- The program now logs messages to console, if you choose to view them
+
+### Changed
+
+- Updated the README to include build commands
+- Updated localisation files
+
+### Fixed
+
+- Executables now actually include the project dependencies again
+
+_______________________________________________________________________________
+
+## [1.1.2] - 2025-04-26
+
+This bugfix release fixes a typo in the CI build configuration, causing
+artifacts to be missing in releases.
+
+### Fixed
+
+- Typo in actions/download-artifact `merge-multiple`-option
+
+_______________________________________________________________________________
+
+## [1.1.1] - 2025-04-26
+
+This bugfix release fixes a deprecation warning from Nuitka, and adds the
+ability to optionally read logs from the program if launched via a terminal.
+
+### Added
+
+- If you launch the program via a terminal, you can now read logs from it.
+  Previously, no logs were available at all
+
+### Fixed
+
+- Nuitka no longer warns about the `--disable-console` command-line option
+  being deprecated; it's been switched to the newer `--windows-console-mode`
+
+_______________________________________________________________________________
+
+## [1.1.0] - 2025-04-26
+
+This release migrates the project from Poetry to uv, updates dependencies,
+reformats parts of the codebase, and updates the README instructions.
+
+### Changed
+
+- Switched all Poetry parts to uv equivalents
+- Updated dependencies
+- Reformatted some parts of the program source code
+- Updated the README to have better usage instructions
+- Updated localisation files
 
 _______________________________________________________________________________
 
