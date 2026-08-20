@@ -1,0 +1,2 @@
+#!/bin/sh
+mise exec -- task format
