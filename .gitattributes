@@ -1,0 +1,23 @@
+# Auto-detect files and perform LF normalisation
+* text eol=lf
+
+# Ensure Markdown files use LF line endings
+*.md  text eol=lf diff=markdown
+
+# These files should have specific line endings
+*.sh  text eol=lf
+*.bat text eol=crlf
+
+# These files should be ignored for line-ending changes
+.vscode/**/*.yml -text
+
+# Ignore line ending changes for binary files
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.bmp  binary
+*.woff binary
+*.mp4  binary
+*.mov  binary
+*.whl  binary
+*.zip  binary
