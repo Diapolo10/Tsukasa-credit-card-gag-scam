@@ -1,13 +1,11 @@
 [build-system]
-requires = ["hatchling", "nuitka",]
+requires = ["hatchling", "nuitka"]
 build-backend = "hatchling.build"
 
-[tool.nuitka]  # NOTE: Does not work yet, waiting for support
+[tool.nuitka] # NOTE: Does not work yet, waiting for support
 assume-yes-for-downloads = true
-enable-plugin = ["tk-inter",]
-include-data-dir = [
-    { source = "src/tccgs/data", destination = "data" },
-]
+enable-plugin = ["tk-inter"]
+include-data-dir = [{ source = "src/tccgs/data", destination = "data" }]
 onefile = true
 output-dir = "build"
 show-scons = true
@@ -22,13 +20,8 @@ name = "tsukasa-credit-card-gag-scam"
 version = "1.2.0"
 description = "A joke program based on a popular credit card scam meme"
 requires-python = ">=3.11.0"
-dependencies = [
-    "Pillow>=11.2.1",
-    "python-dotenv>=1.1.0",
-]
-authors = [
-    { name = "Bleeplo", email = "bleeplo@users.noreply.github.com" },
-]
+dependencies = ["Pillow>=12.3.0", "python-dotenv>=1.2.3"]
+authors = [{ name = "Bleeplo", email = "bleeplo@users.noreply.github.com" }]
 maintainers = [
     { name = "Lari Liuhamo", email = "lari.liuhamo+github@gmail.com" },
 ]
@@ -46,11 +39,7 @@ tccgs = "tccgs.script:main"
 "Documentation" = "https://github.com/Diapolo10/iplib3/tree/main/docs"
 
 [dependency-groups]
-dev = [
-    "mypy>=1.15.0",
-    "nuitka>=2.6.9",
-    "ruff>=0.11.7",
-]
+dev = ["mypy>=2.3.1", "nuitka>=4.1.3", "ruff>=0.16.3"]
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/tccgs"]
@@ -59,6 +48,7 @@ packages = ["src/tccgs"]
 lint.select = ["ALL"]
 lint.ignore = [
     "COM812",  # Missing trailing comma (disabled due to formatter conflict)
+    "CPY001",  # Copyright missing at the top of the file
     "D203",    # One blank line before class docstring
     "D212",    # Multi-line summary first line
     "ISC001",  # Single-line implicit string concatenation (disabled due to formatter conflict)
@@ -66,15 +56,15 @@ lint.ignore = [
 ]
 line-length = 120
 show-fixes = true
-src = ["src",]
+src = ["src"]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
 
 [tool.ruff.lint.per-file-ignores]
 # https://beta.ruff.rs/docs/rules/
-"__init__.py" = ["F401", "F403", "F405", "PGH003",]
-"logger.py" = ["N815",]
+"__init__.py" = ["F401", "F403", "F405", "PGH003"]
+"logger.py" = ["N815"]
 
 [tool.ruff.lint.pylint]
 max-args = 15
