@@ -1,0 +1,7 @@
+default: true
+
+MD013: # Line length
+  line_length: 120
+MD024: # Multiple headings with the same content
+  siblings_only: true
+MD033: false # Inline HTML
