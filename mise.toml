@@ -1,0 +1,18 @@
+[settings]
+disable_backends = ["asdf", "vfox", "ubi"]
+lockfile = true
+minimum_release_age = "7d"
+pin = true
+prefer_offline = true
+system_deps = "auto"
+
+[env]
+TASK_X_GENTLE_FORCE = 1
+
+[tools]
+# act = "0.2.89"  # TODO: Use this to run pipelines locally
+cspell = "10"
+node = "26"    # Needed for cspell
+prettier = "3"
+task = "3"
+uv = "0.12.4"
