@@ -6,9 +6,8 @@ on:
   push:
     branches:
       - '**'
-  pull_request:
-    branches:
-      - '**'
+    tags-ignore:
+      - 'v*' # Avoid re-running existing commit on release
 
 permissions:
   contents: write
@@ -19,32 +18,14 @@ jobs:
   ruff:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
-    - name: Checkout repository
-      uses: actions/checkout@v5
+      - name: Install tools
+        uses: jdx/mise-action@v4
 
-    - name: Install tools
-      uses: jdx/mise-action@v4
+      - name: Install library and dependencies
+        run: task install
 
-    - name: Install library and dependencies
-      run: |
-        uv sync --frozen
-
-    - name: Lint with Ruff
-      id: lint
-      run: |
-        uv run ruff check --fix .
-        echo "RUFF_SUCCESS=$([ $? -eq 0 ])" >> $GITHUB_OUTPUT
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v7
-      if: ${{ !steps.lint.outputs.RUFF_SUCCESS }}
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        title: "Format Python code with Ruff push"
-        commit-message: "[PATCH] Ruff auto-format"
-        body: |
-          There appear to be some python formatting errors in ${{ github.sha }}.
-          This pull request uses the Ruff formatter to fix some of these issues.
-        base: ${{ github.head_ref }} # Creates pull request onto pull request or commit branch
-        branch: actions/ruff
+      - name: Lint with Ruff
+        run: task lint

@@ -17,16 +17,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        python-version: [
-          '3.11',
-          'pypy-3.11',
-        ]
+        os: [ubuntu-latest, windows-latest]
+        python-version: ['3.11', 'pypy-3.11']
         exclude:
           - os: windows-latest
             python-version: 'pypy-3.11'
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v5
 
@@ -36,51 +32,13 @@ jobs:
       - name: Install Python ${{ matrix.python-version }}
         run: uv python install ${{ matrix.python-version }} --default
 
-      - name: Check Version
-        uses: nowsprinting/check-version-format-action@v4
-        id: version
-        with:
-          prefix: 'v'
-
       - name: Setup Python ${{ matrix.python-version }}
         uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Build Python Releases
-        run: |
-          uv build
-
-      - name: Build Executables (Posix)
-        if: ${{ !startsWith(matrix.python-version, 'pypy') && !startsWith(matrix.os, 'windows') }}
-        run: |
-          uv run nuitka \
-           --standalone \
-           --onefile \
-           --show-scons \
-           --assume-yes-for-downloads \
-           --output-dir=build \
-           --enable-plugin=tk-inter \
-           --include-data-dir=src/tccgs/data=data \
-           src/tccgs/script.py
-
-      - name: Build Executables (Windows)
-        if: ${{ !startsWith(matrix.python-version, 'pypy') && startsWith(matrix.os, 'windows') }}
-        run: |
-          uv run nuitka.cmd `
-           --standalone `
-           --onefile `
-           --show-scons `
-           --assume-yes-for-downloads `
-           --output-dir=build `
-           --enable-plugin=tk-inter `
-           --include-data-dir=src/tccgs/data=data `
-           --windows-company-name="Team DeltaV" `
-           --windows-console-mode=attach `
-           --windows-file-description="A joke program based on a popular credit card scam meme" `
-           --windows-file-version="${{ steps.version.outputs.major_without_prefix }}.${{ steps.version.outputs.minor }}.${{ steps.version.outputs.patch }}" `
-           --windows-product-name="Totally Not Malware" `
-           src/tccgs/script.py
+      - name: Build Releases
+        run: task build
 
       - name: Upload Builds
         uses: actions/upload-artifact@v4
@@ -97,7 +55,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout Repository
         uses: actions/checkout@v5
 
