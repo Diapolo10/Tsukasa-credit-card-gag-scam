@@ -1,0 +1,21 @@
+version: '3'
+
+tasks:
+  python:
+    desc: Format Python code
+    cmds:
+      - mise exec -- uv run ruff format
+
+  markdown:
+    desc: Format Markdown files
+    cmds:
+      - mise exec -- prettier --config {{.CONFIG_FILE}} --write .
+    vars:
+      CONFIG_FILE: .vscode/.prettierrc
+
+  yaml:
+    desc: Format YAML files
+    cmds:
+      - mise exec -- prettier --config {{.CONFIG_FILE}} --write .
+    vars:
+      CONFIG_FILE: .vscode/.prettierrc

@@ -1,0 +1,12 @@
+version: '3'
+
+tasks:
+  tools:
+    desc: Update tools
+    cmds:
+      - mise up --bump
+
+  packages:
+    desc: Update packages
+    cmds:
+      - mise exec -- uv upgrade

@@ -1,0 +1,33 @@
+version: '3'
+
+tasks:
+  tools:
+    desc: Install development tools
+    sources:
+      - mise.toml
+      - mise.lock
+    cmds:
+      - mise install --locked
+
+  packages:
+    desc: Install Python packages
+    deps:
+      - task: tools
+    sources:
+      - pyproject.toml
+      - uv.lock
+    generates:
+      - .venv/**/*
+    cmds:
+      - mise exec -- uv sync --frozen
+
+  hooks:
+    desc: Install Git hooks
+    sources:
+      - .githooks/**/*
+    generates:
+      - .git/hooks/**/*
+    # status:
+    #   - .git/hooks/pre-commit
+    cmds:
+      - git config core.hooksPath .githooks

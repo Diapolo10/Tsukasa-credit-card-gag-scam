@@ -121,7 +121,7 @@ venv.bak/
 .ropeproject
 
 # VS Code project settings
-.vscode
+!.vscode
 
 # mkdocs documentation
 /site
@@ -145,3 +145,9 @@ cython_debug/
 
 # Ruff
 .ruff_cache
+
+# Cspell
+.cspellcache
+
+# Task
+.task/

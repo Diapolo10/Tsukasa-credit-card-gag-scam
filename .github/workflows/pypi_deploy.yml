@@ -12,15 +12,14 @@ jobs:
     name: Build and publish Python 🐍 distributions 📦 to live PyPI
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
 
-    - name: Checkout repository
-      uses: actions/checkout@master
+      - name: Install tools
+        uses: jdx/mise-action@v4
 
-    - name: Install uv
-      uses: astral-sh/setup-uv@v6
+      - name: Build
+        run: task build:python
 
-    - name: Build
-      run: uv build
-
-    - name: Publish distribution 📦 to PyPI
-      run: uv publish --token ${{ secrets.PYPI_PASSWORD }}
+      - name: Publish distribution 📦 to PyPI
+        run: uv publish --token ${{ secrets.PYPI_PASSWORD }}

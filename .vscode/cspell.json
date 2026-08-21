@@ -1,0 +1,28 @@
+{
+  "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
+  "version": "0.2",
+  "language": "en-GB,en-US",
+  "files": ["**/*.py", "**/*.md", "**/*.yml", "**/*.yaml", "**/*.json"],
+  "dictionaries": ["companies", "softwareTerms", "python", "powershell", "html", "bash", "filetypes"],
+  "words": [
+    "amet",
+    "Bleeplo",
+    "borderwidth",
+    "dotenv",
+    "entrybox",
+    "gmtime",
+    "MEIPASS",
+    "msecs",
+    "nuitka",
+    "onefile",
+    "padx",
+    "pady",
+    "tccgs",
+    "tsukasa"
+  ],
+  "flagWords": [],
+  "enabledFileTypes": {
+    "*": true
+  },
+  "ignorePaths": []
+}

@@ -1,0 +1,47 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit",
+    "source.unusedImports": "explicit"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "files.trimTrailingWhitespace": true,
+  "json.schemaDownload.trustedDomains": {
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://json-schema.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://www.schemastore.org/": true
+  },
+  "markdownlint.configFile": ".vscode/.markdownlint.yml",
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+  "mypy-type-checker.path": ["uv", "run", "mypy"],
+  "mypy-type-checker.preferDaemon": true,
+  "mypy-type-checker.reportingScope": "workspace",
+  "prettier.configPath": ".vscode/.prettierrc",
+  "python.testing.pytestEnabled": true,
+  "python.testing.unittestEnabled": false,
+  "ruff.nativeServer": true,
+  "terminal.integrated.scrollback": 100000,
+  "yaml.schemas": {
+    "https://taskfile.dev/schema.json": ["**/tasks/*.{yaml,yml}", "**/Taskfile.yml"]
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.tabSize": 4
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.tabSize": 4
+  }
+}

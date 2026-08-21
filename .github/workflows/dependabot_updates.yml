@@ -1,7 +1,7 @@
 # This workflow enables Dependabot to automatically merge dependency updates
 
 name: Dependabot reviewer
-on: [ pull_request ]
+on: [pull_request]
 
 permissions:
   contents: write
@@ -12,7 +12,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
     steps:
-
       - name: Dependabot metadata
         id: dependabot-metadata
         uses: dependabot/fetch-metadata@v3.1.0

@@ -1,0 +1,22 @@
+version: '3'
+
+tasks:
+  python:
+    desc: Run Python tests
+    sources:
+      - '**/*.py'
+      - pyproject.toml
+      - uv.lock
+    generates:
+      - tests/test_results/**/*
+    deps:
+      - task: :install:packages
+    cmds:
+      - mise exec -- uv run pytest {{.CLI_ARGS}}
+
+  python:watch:
+    desc: Run Python tests in watch mode
+    deps:
+      - task: :install:packages
+    cmds:
+      - mise exec -- uv run ptw --wait -- {{.CLI_ARGS}}

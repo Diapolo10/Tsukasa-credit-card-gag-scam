@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  windows:
+    desc: Remove local build and install artifacts on Windows
+    platforms:
+      - windows
+    cmds:
+      - cmd: |-
+          rmdir /s /q .venv
+          rmdir /s /q build
+          rmdir /s /q dist
+          rmdir /s /q bin
+          rmdir /s /q __pycache__
+
+  posix:
+    desc: Remove local build and install artifacts on POSIX systems
+    platforms:
+      - linux
+      - darwin
+    cmds:
+      - cmd: |
+          rm -rf .venv build dist bin __pycache__

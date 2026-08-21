@@ -130,10 +130,10 @@ def main() -> None:
     tsukasa_gif_file = resource_path(Path("data") / "tsukasa.gif")
     thx_button = resource_path(Path("data") / "thanks_button.png")
 
-    thanksbutton_image = tk.PhotoImage(file=thx_button)
+    thanks_button_image = tk.PhotoImage(file=thx_button)
     button_quit = tk.Button(
         root,
-        image=thanksbutton_image,
+        image=thanks_button_image,
         command=partial(entry_button, root),
         bg="#FFFFFF",
         borderwidth=0,
