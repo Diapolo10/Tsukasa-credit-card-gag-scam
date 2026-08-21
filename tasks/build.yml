@@ -1,0 +1,40 @@
+version: '3'
+
+tasks:
+  python:
+    desc: Build the wheel distribution for the project
+    generates:
+      - '**/dist/**/*'
+    cmds:
+      - mise exec -- uv build
+
+  nuitka:
+    desc: Build the Nuitka executable
+    generates:
+      - '**/build/*.exe'
+    cmds:
+      - >
+        mise exec -- uv run {{.NUITKA}}
+        --assume-yes-for-downloads
+        --onefile
+        --standalone
+        --enable-plugin=tk-inter
+        --include-data-dir=src/tccgs/data=data
+        --output-dir=build
+        --company-name="{{.COMPANY_NAME}}"
+        --product-name="{{.PRODUCT_NAME}}"
+        --file-description="{{.DESCRIPTION}}"
+        --output-filename="{{.FILE_NAME}}"
+        --product-version="{{.VERSION}}"
+        --file-version="{{.VERSION}}"
+        {{.WINDOWS_CONSOLE_MODE}}
+        src/tccgs/script.py
+    vars:
+      NUITKA: 'nuitka{{if eq OS "windows"}}.cmd{{end}}'
+      WINDOWS_CONSOLE_MODE: '{{if eq OS "windows"}}--windows-console-mode=attach{{end}}'
+      COMPANY_NAME: Team DeltaV
+      PRODUCT_NAME: 'Totally Not Malware'
+      DESCRIPTION: 'A joke program based on a popular credit card scam meme'
+      FILE_NAME: tccgs
+      VERSION:
+        sh: mise exec -- uv version --short
