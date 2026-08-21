@@ -65,7 +65,7 @@ jobs:
           merge-multiple: true
 
       - name: Check Version
-        uses: nowsprinting/check-version-format-action@v4
+        uses: nowsprinting/check-version-format-action@v5
         id: version
         with:
           prefix: 'v'
