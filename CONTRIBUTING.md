@@ -1,4 +1,4 @@
-# Contributing to the `growlery` project
+# Contributing to the project
 
 ## Filing a bug report
 
@@ -21,14 +21,14 @@ You may NOT suggest features through email to the core developers.
 
 ## Setting up your development environment
 
-Since `growlery` has very little to do beyond programming and testing,
+Since `tccgs` has very little to do beyond programming and testing,
 the following should be enough for 95% of all contributors:
 
 1. A working Git or GitHub Desktop installation
 2. A text editor / Python IDE
-3. An installation of Python that supports Python version 3.10 or higher
+3. An installation of Python that supports Python version 3.11 or higher
 4. The following, non-standard PyPI modules (available through `pip`):
-    - `uv`
+   - `uv`
 
-[Issues]: https://github.com/Diapolo10/growlery/issues
-[Projects]: https://github.com/Diapolo10/growlery/projects
+[Issues]: https://github.com/Diapolo10/Tsukasa-credit-card-gag-scam/issues
+[Projects]: https://github.com/Diapolo10/Tsukasa-credit-card-gag-scam/projects

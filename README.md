@@ -28,59 +28,47 @@ may work, but is not guaranteed.
 
 To install the project with development dependencies,
 
-1. Install `uv`: [`uv` documentation][uv-docs]
-2. Within the project directory, run `uv sync`
+1. Install `mise`: [`mise` documentation][mise-docs]
+2. Within the project directory, run `mise install`
+3. Then run `mise exec -- task install`
 
 ### Running the program
 
 ```sh
-uv run tccgs
+mise exec -- uv run tccgs
 ```
 
 ### Running linters
 
 ```sh
-uv run ruff check .
-```
-
-If you wish to auto-fix certain issues,
-
-```sh
-uv run ruff check . --fix
+mise exec -- task lint
 ```
 
 ### Running formatters
 
 ```sh
-uv run ruff format
+mise exec -- task format
 ```
 
 ### Building executables
 
-You can build an executable for non-Windows platforms using
+You can build an executable using
 
 ```sh
-uv run nuitka --standalone --onefile --assume-yes-for-downloads --output-dir=build --enable-plugin=tk-inter --include-data-dir=src/tccgs/data=data src/tccgs/script.py
-```
-
-and for Windows with
-
-```sh
-uv run nuitka.cmd --standalone --onefile --assume-yes-for-downloads --output-dir=build --enable-plugin=tk-inter --include-data-dir=src/tccgs/data=data --windows-console-mode=attach src/tccgs/script.py
+mise exec -- task build:nuitka
 ```
 
 ## Version history
 
-The project's changelog can be found [here][changelog].
+The project's [changelog][changelog].
 
 ## Special thanks
 
-* [@Bleeplo][], for creating the original program. You can find their original
-  executable release [here][original-exe].
+- [@Bleeplo][], for creating [the original program][original-exe].
 
 [changelog]: ./CHANGELOG.md
 [example-gif]: ./docs/assets/example.gif
 [pyproject-toml]: ./pyproject.toml
-[uv-docs]: https://docs.astral.sh/uv/
+[mise-docs]: https://mise.jdx.dev/
 [@Bleeplo]: https://github.com/Bleeplo
 [original-exe]: https://drive.google.com/file/d/1gVKI089Y7Ub7MrqNmRwsvOGZYS3msnIu/view?usp=sharing

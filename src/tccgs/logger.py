@@ -66,7 +66,7 @@ class ColouredFormatter(logging.Formatter):
 
     # This enforces UTC timestamps regardless of local timezone
     # and is necessary for easier log comparisons
-    converter = time.gmtime
+    converter = time.gmtime  # type: ignore[assignment]
 
     @override
     def format(self, record: logging.LogRecord) -> str:
@@ -94,7 +94,7 @@ class CustomQueueHandler(logging.handlers.QueueHandler):
     def __init__(self, *args: Any, **kwargs: Any) -> None:
         queue_handler = logging.getHandlerByName("queue_handler")
         if queue_handler is None:
-            super().__init__(*args, **kwargs)  # type: ignore[arg-type]
+            super().__init__(*args, **kwargs)
 
 
 def setup_logging() -> None:

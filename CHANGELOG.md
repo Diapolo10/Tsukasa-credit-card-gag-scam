@@ -1,3 +1,4 @@
+<!-- prettier-ignore-start -->
 
 # Project Changelog
 
@@ -6,7 +7,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [CHANGELOG.md][CHANGELOG.md]
 and this project adheres to [Semantic Versioning][Semantic Versioning].
 
-<!-- 
+<!--
 TEMPLATE
 
 ## [major.minor.patch] - yyyy-mm-dd
@@ -26,7 +27,7 @@ A message that notes the main changes in the update.
 ### Security
 
 _______________________________________________________________________________
- 
+
  -->
 
 <!--
@@ -186,3 +187,5 @@ This is the initial version of the project.
 <!--
     MD024: No duplicate headings
 -->
+
+<!-- prettier-ignore-end -->

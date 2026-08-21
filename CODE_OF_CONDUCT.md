@@ -105,7 +105,7 @@ Violating these terms may lead to a permanent ban.
 ### 4. Permanent Ban
 
 **Community Impact**: Demonstrating a pattern of violation of community
-standards, including sustained inappropriate behavior,  harassment of an
+standards, including sustained inappropriate behavior, harassment of an
 individual, or aggression toward or disparagement of classes of individuals.
 
 **Consequence**: A permanent ban from any sort of public interaction within
@@ -114,13 +114,12 @@ the community.
 ## Attribution
 
 This Code of Conduct is adapted from the [Contributor Covenant][homepage],
-version 2.0, available [here][Covenant].
+[version 2.0][Covenant].
 
 Community Impact Guidelines were inspired by
 [Mozilla's code of conduct enforcement ladder][Diversity].
 
-For answers to common questions about this code of conduct, see the FAQ
-[here][FAQ]. Translations are available [here][Translations].
+For answers to common questions about this code of conduct, see [the FAQ][FAQ]. [Translations are available here][Translations].
 
 [homepage]: https://www.contributor-covenant.org
 [Covenant]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
