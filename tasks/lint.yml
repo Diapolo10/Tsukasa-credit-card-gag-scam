@@ -1,0 +1,25 @@
+version: '3'
+
+tasks:
+  python:
+    desc: Check Python codebase for style issues
+    sources:
+      - '**/*.py'
+      - pyproject.toml
+    cmds:
+      - mise exec -- uv run ruff check --fix
+      - mise exec -- uv run mypy .
+
+  grammar:
+    desc: Check codebase for grammar issues
+    cmds:
+      - mise exec -- cspell lint --config {{.CONFIG}} {{.FLAGS}}
+    vars:
+      CONFIG: .vscode/cspell.json
+      FLAGS: --unique --show-context --gitignore --cache
+
+  security:
+    desc: Audit codebase for security issues
+    cmds:
+      # TODO: Check flags
+      - mise exec -- uv audit

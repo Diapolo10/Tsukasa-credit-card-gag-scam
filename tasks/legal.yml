@@ -1,0 +1,26 @@
+version: '3'
+
+tasks:
+  lint:
+    desc: Check the project for legal compliance issues
+    sources:
+      - pyproject.toml
+    deps:
+      - task: :install:tools
+    cmds:
+      - echo "Checking the legal compliance of installed Python packages"
+      - mise exec -- uvx pip-licenses --summary --allow-only "{{.ALLOWED_LICENSES}}" --ignore-packages "{{.IGNORED_PACKAGES}}"
+    vars:
+      # TODO: Make this smarter
+      ALLOWED_LICENSES: 'MIT, BSD, Apache-2.0, ISC, Python-2.0, ZPL-2.1, PSF-2.0'
+      IGNORED_PACKAGES: 'setuptools, pip, wheel'
+
+  report:
+    desc: Generate a report listing the project's external dependencies
+    cmds:
+      - echo "Generating a report of the project's external dependencies"
+      - mise exec -- uvx pip-licenses --format=json --with-urls --output-file="{{.PYTHON_REPORT}}"
+    vars:
+      PYTHON_REPORT: build/licenses.json
+    platforms:
+      - windows
