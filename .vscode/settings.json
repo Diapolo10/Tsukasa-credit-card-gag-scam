@@ -9,6 +9,7 @@
   "editor.formatOnSaveMode": "file",
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
+  "explorer.excludeGitIgnore": false,
   "files.trimTrailingWhitespace": true,
   "json.schemaDownload.trustedDomains": {
     "https://developer.microsoft.com/json-schemas/": true,
@@ -22,7 +23,6 @@
   },
   "markdownlint.configFile": ".vscode/.markdownlint.yml",
   "mypy-type-checker.importStrategy": "fromEnvironment",
-  "mypy-type-checker.path": ["uv", "run", "mypy"],
   "mypy-type-checker.preferDaemon": true,
   "mypy-type-checker.reportingScope": "workspace",
   "prettier.configPath": ".vscode/.prettierrc",
@@ -41,7 +41,7 @@
     "editor.tabSize": 4
   },
   "[toml]": {
-    "editor.defaultFormatter": "tamasfe.even-better-toml",
+    "editor.defaultFormatter": "tombi-toml.tombi",
     "editor.tabSize": 4
   }
 }
