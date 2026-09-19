@@ -15,4 +15,4 @@ cspell = "10"
 node = "26"    # Needed for cspell
 prettier = "3"
 task = "3"
-uv = "0.12.4"
+uv = "0.12.13"
