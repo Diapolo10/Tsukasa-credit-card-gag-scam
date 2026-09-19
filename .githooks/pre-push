@@ -1,2 +1,2 @@
 #!/bin/sh
-mise exec -- task lint
+mise exec -- task hook:pre-push

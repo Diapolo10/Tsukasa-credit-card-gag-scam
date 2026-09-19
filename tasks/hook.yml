@@ -1,0 +1,13 @@
+version: '3'
+
+tasks:
+  pre-commit:
+    desc: Pre-commit Git actions
+    cmds:
+      # TODO: Make this run smart formatters only on staged changes
+      - task: :lint
+
+  pre-push:
+    desc: Pre-push Git actions
+    cmds:
+      - task: :lint

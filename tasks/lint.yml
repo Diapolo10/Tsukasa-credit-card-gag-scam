@@ -8,6 +8,7 @@ tasks:
       - pyproject.toml
     cmds:
       - mise exec -- uv run ruff check --fix
+      - mise exec -- uv run ruff format --check
       - mise exec -- uv run mypy .
 
   grammar:

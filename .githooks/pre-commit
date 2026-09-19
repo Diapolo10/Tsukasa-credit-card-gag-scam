@@ -1,2 +1,2 @@
 #!/bin/sh
-mise exec -- task format
+mise exec -- task hook:pre-commit

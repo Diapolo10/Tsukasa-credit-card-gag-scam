@@ -4,11 +4,12 @@ includes:
   build: ./tasks/build.yml
   clean: ./tasks/clean.yml
   format: ./tasks/format.yml
+  hook: ./tasks/hook.yml
   install: ./tasks/install.yml
+  legal: ./tasks/legal.yml
   lint: ./tasks/lint.yml
   test: ./tasks/test.yml
   update: ./tasks/update.yml
-  legal: ./tasks/legal.yml
 
 tasks:
   install:
