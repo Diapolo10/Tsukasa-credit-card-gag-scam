@@ -19,13 +19,9 @@ def resource_path(relative_path: str | Path) -> Path:
     """
     Get absolute path to resource.
 
-    Works for dev and for PyInstaller.
+    Works for dev and for Nuitka.
     """
-    base_dir = Path(__file__).parent
-
-    if getattr(sys, "frozen", False) and hasattr(sys, "_MEIPASS"):
-        # PyInstaller creates a temp folder and stores path in _MEIPASS
-        base_dir = Path(sys._MEIPASS)  # noqa: SLF001
+    base_dir = (Path(__file__) if "__file__" in globals() else Path(sys.argv[0])).parent
 
     return base_dir / relative_path
 
@@ -97,7 +93,7 @@ class AnimatedGIF:
         self.canvas = tk.Canvas(parent, width=278, height=286, bg="#FFFFFF")
         self.canvas.grid(row=0, rowspan=5, column=0, columnspan=1)
 
-        self.sequence = []
+        self.sequence: list[ImageTk.PhotoImage] = []
         with Image.open(file_path) as image_file:
             for img in ImageSequence.Iterator(image_file):
                 self.sequence.append(ImageTk.PhotoImage(img))
@@ -105,7 +101,7 @@ class AnimatedGIF:
         self.frame = 0
 
         # Make the number of this 0.5 the size of the image
-        self.image = self.canvas.create_image(139, 143, image=self.sequence[self.frame])
+        self.image = self.canvas.create_image(139, 143, image=self.sequence[self.frame])  # pyright: ignore[reportUnknownMemberType]
 
     def increment_frame(self) -> None:
         """Update the current frame index."""
@@ -142,7 +138,7 @@ def main() -> None:
     # Window Info
     root.geometry("")
     root.title("Totally Not Malware")
-    root.iconbitmap(window_icon)
+    root.iconbitmap(window_icon)  # pyright: ignore[reportUnknownMemberType]
     root.configure(background="#FFFFFF")
     root.resizable(width=False, height=False)  # Disables window resizing
 

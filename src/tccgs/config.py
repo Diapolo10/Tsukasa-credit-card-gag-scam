@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PACKAGE_NAME = __package__
+PACKAGE_NAME = str(__package__)
 
 with pkg_resources.as_file(pkg_resources.files(PACKAGE_NAME)) as package_dir:
     DEFAULT_CONFIG_FILE_PATH = package_dir / "logger_config.toml"

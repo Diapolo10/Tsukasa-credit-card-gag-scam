@@ -10,6 +10,7 @@ tasks:
       - mise exec -- uv run ruff check --fix
       - mise exec -- uv run ruff format --check
       - mise exec -- uv run mypy .
+      - mise exec -- uv run pyright
 
   grammar:
     desc: Check codebase for grammar issues
@@ -23,4 +24,4 @@ tasks:
     desc: Audit codebase for security issues
     cmds:
       # TODO: Check flags
-      - mise exec -- uv audit
+      - mise exec -- uv audit --locked
