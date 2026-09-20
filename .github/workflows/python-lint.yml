@@ -1,0 +1,23 @@
+# This workflow lints Python code, using mise to handle tool installation and Taskfile to handle the rest
+
+name: Python lint
+
+on:
+  push:
+    branches-ignore:
+      - 'dependabot/**' # Avoid duplicates: only run the PR, not the push
+      - 'gh-pages' # GitHub Pages do not trigger all tests
+    tags-ignore:
+      - 'v*' # Avoid rerun of existing commit on release
+  pull_request:
+    branches:
+      - $default-branch
+
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+jobs:
+  lint:
+    uses: diapolo10/.github/.github/workflows/python-lint.yml@main
