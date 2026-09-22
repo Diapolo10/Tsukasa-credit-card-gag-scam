@@ -11,4 +11,4 @@ on:
 
 jobs:
   lint:
-    uses: diapolo10/.github/.github/workflows/lint.yml@main
+    uses: diapolo10/.github/.github/workflows/lint.yml@c8ea0e99f7a5a688ae8f39d4f2163387f231ef1c
