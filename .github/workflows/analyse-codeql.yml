@@ -1,0 +1,19 @@
+# This generic workflow analyses the repository with CodeQL
+
+name: CodeQL analysis
+
+on:
+  pull_request:
+    branches: ['main']
+  schedule:
+    - cron: '0 0 * * *'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  codeql:
+    uses: diapolo10/.github/.github/workflows/analyse-codeql.yml@0ca8cd668c60de32c345802be214690617b19c5a
+    with:
+      languages: '["actions", "python"]'
