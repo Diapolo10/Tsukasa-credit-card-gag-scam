@@ -1,0 +1,15 @@
+# This workflow enables Dependabot to automatically rebase dependency updates
+
+name: Review Dependabot PRs
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  review-dependabot-pr:
+    uses: diapolo10/.github/.github/workflows/review-dependabot-pr.yml@0ca8cd668c60de32c345802be214690617b19c5a
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
