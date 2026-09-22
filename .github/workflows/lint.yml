@@ -9,6 +9,9 @@ on:
     tags-ignore:
       - 'v*' # Avoid re-running existing commit on release
 
+permissions:
+  contents: read
+
 jobs:
   lint:
-    uses: diapolo10/.github/.github/workflows/lint.yml@main
+    uses: diapolo10/.github/.github/workflows/lint.yml@0ca8cd668c60de32c345802be214690617b19c5a
