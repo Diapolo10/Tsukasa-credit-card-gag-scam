@@ -1,6 +1,11 @@
 version: '3'
 
 tasks:
+  mise:
+    desc: Update mise
+    cmds:
+      - mise self-update --yes
+
   tools:
     desc: Update tools
     cmds:

@@ -7,6 +7,7 @@
     "esbenp.prettier-vscode",
     "fill-labs.dependi",
     "github.vscode-github-actions",
+    "hverlin.mise-vscode",
     "ms-python.mypy-type-checker",
     "ms-python.python",
     "ms-python.vscode-pylance",
