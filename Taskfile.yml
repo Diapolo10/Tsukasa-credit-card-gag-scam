@@ -8,6 +8,7 @@ includes:
   install: ./tasks/install.yml
   legal: ./tasks/legal.yml
   lint: ./tasks/lint.yml
+  run: ./tasks/run.yml
   test: ./tasks/test.yml
   update: ./tasks/update.yml
 
@@ -53,6 +54,13 @@ tasks:
     cmds:
       - task: test:python
       # - task: test:smoke
+
+  run:
+    desc: Run the project
+    deps:
+      - task: install
+    cmds:
+      - task: run:dev
 
   build:
     desc: Build the project
