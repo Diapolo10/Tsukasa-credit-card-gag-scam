@@ -32,6 +32,10 @@ To install the project with development dependencies,
 2. Within the project directory, run `mise install`
 3. Then run `mise exec -- task install`
 
+**NOTE:** If using VS Code, the included settings and recommended extensions
+should ensure you can omit the `mise exec --`-part of all of these commands,
+meaning you can mostly just run `task` commands directly.
+
 ### Running the program
 
 ```sh
