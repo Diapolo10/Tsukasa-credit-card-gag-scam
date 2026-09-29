@@ -39,7 +39,7 @@ meaning you can mostly just run `task` commands directly.
 ### Running the program
 
 ```sh
-mise exec -- uv run tccgs
+mise exec -- task run
 ```
 
 ### Running linters

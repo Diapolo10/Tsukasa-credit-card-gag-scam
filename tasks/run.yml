@@ -1,0 +1,16 @@
+version: '3'
+
+tasks:
+  dev:
+    desc: Run the project in development mode
+    cmds:
+      # NOTE: Source runs don't seem to work for some reason
+      # - mise exec -- uv run tccgs
+      - task: exe
+
+  exe:
+    desc: Run the built executable
+    deps:
+      - :build:nuitka
+    cmds:
+      - ./build/tccgs{{if eq OS "windows"}}.exe{{end}}
