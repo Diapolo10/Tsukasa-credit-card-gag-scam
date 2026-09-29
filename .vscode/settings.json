@@ -30,6 +30,7 @@
   "prettier.configPath": ".vscode/.prettierrc",
   "python.testing.pytestEnabled": true,
   "python.testing.unittestEnabled": false,
+  "ruff.importStrategy": "useBundled",
   "ruff.nativeServer": true,
   "terminal.integrated.scrollback": 100000,
   "yaml.schemas": {
@@ -43,7 +44,7 @@
     "editor.tabSize": 4
   },
   "[toml]": {
-    "editor.defaultFormatter": "tombi-toml.tombi",
+    "editor.defaultFormatter": "tamasfe.even-better-toml",
     "editor.tabSize": 4
   }
 }

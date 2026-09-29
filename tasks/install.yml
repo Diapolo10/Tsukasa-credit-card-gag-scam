@@ -6,6 +6,7 @@ tasks:
     sources:
       - mise.toml
       - mise.lock
+      - .mise/locks
     cmds:
       - mise install --locked
 

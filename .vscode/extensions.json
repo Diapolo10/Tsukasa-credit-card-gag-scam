@@ -13,7 +13,8 @@
     "ms-python.vscode-pylance",
     "redhat.vscode-yaml",
     "streetsidesoftware.code-spell-checker",
-    "tombi-toml.tombi",
+    "tamasfe.even-better-toml",
+    // "tombi-toml.tombi", // Disabled due to current lack of configuration
     "usernamehw.errorlens",
     "yzhang.markdown-all-in-one"
   ]

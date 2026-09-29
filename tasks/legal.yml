@@ -5,8 +5,7 @@ tasks:
     desc: Check the project for legal compliance issues
     sources:
       - pyproject.toml
-    deps:
-      - task: :install:tools
+      - uv.lock
     cmds:
       - echo "Checking the legal compliance of installed Python packages"
       - mise exec -- uvx pip-licenses --summary --allow-only "{{.ALLOWED_LICENSES}}" --ignore-packages "{{.IGNORED_PACKAGES}}"
