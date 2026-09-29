@@ -3,12 +3,13 @@
 name: CodeQL analysis
 
 on:
-  pull_request:
-    branches: ['main']
+  pull_request_target:
+    types: [opened, reopened, synchronize]
   schedule:
     - cron: '0 0 * * *'
 
 permissions:
+  actions: read
   contents: read
   security-events: write
 
