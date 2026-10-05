@@ -14,4 +14,4 @@ permissions:
 
 jobs:
   lint:
-    uses: diapolo10/.github/.github/workflows/lint.yml@0ca8cd668c60de32c345802be214690617b19c5a
+    uses: diapolo10/.github/.github/workflows/lint.yml@b4855cc4598784c83e4135e3cc2efa1ea2d325f7
