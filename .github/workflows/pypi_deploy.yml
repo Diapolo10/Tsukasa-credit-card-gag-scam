@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@master
 
       - name: Install tools
-        uses: jdx/mise-action@v4
+        uses: jdx/mise-action@v5
 
       - name: Build
         run: task build:python
