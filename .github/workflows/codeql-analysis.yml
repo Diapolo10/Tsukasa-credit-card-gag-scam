@@ -7,6 +7,7 @@ on:
     types: [opened, reopened, synchronize]
   schedule:
     - cron: '0 0 * * *'
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -15,6 +16,6 @@ permissions:
 
 jobs:
   codeql:
-    uses: diapolo10/.github/.github/workflows/analyse-codeql.yml@0ca8cd668c60de32c345802be214690617b19c5a
+    uses: diapolo10/.github/.github/workflows/codeql.yml@ca58b6e175aae9026e66905e4b4b55c0088fcafb
     with:
       languages: '["actions", "python"]'
