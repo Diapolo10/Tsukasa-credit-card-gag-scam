@@ -14,4 +14,5 @@ tasks:
   packages:
     desc: Update packages
     cmds:
-      - mise exec -- uv upgrade
+      - mise exec -- uv lock --upgrade
+      - mise exec -- uv sync
