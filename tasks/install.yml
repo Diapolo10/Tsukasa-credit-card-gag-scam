@@ -26,9 +26,8 @@ tasks:
     desc: Install Git hooks
     sources:
       - .githooks/**/*
-    generates:
-      - .git/hooks/**/*
-    # status:
-    #   - .git/hooks/pre-commit
+      - tasks/hook.yml
+    status:
+      - test "$(git config --get core.hooksPath)" = ".githooks"
     cmds:
       - git config core.hooksPath .githooks
