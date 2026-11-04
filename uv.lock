@@ -267,9 +267,9 @@ wheels = [
 
 [[package]]
 name = "nuitka"
-version = "4.3.3"
+version = "4.3.4"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/c0/5b/b3ec9a3373f1f1ad546d31101b41fb07befee7ecf734bab6c75a935b43bf/nuitka-4.3.3.tar.gz", hash = "sha256:3bed65735d5cfc53dc13070f9f17c52dbe584c0f03de32b6ef011f5db674add9", size = 4779258, upload-time = "2026-10-29T19:25:50.668Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/46/19/9e0a68ea7bf6124843eaf2163430edc80569d4ce33511928e3958c960fb3/nuitka-4.3.4.tar.gz", hash = "sha256:e98e0c9a3224b581cf8ec0fab92b039b90fb7fa78673550c22833a82de444b25", size = 4779496, upload-time = "2026-11-01T07:44:15.061Z" }
 
 [[package]]
 name = "pathspec"
